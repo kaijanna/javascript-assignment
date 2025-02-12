@@ -1,15 +1,23 @@
-body { background-color: #151515;
+body { 
+    position: relative;
+    padding: 0%;
+    background-color: #151515;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
 #header{
+    position:sticky;
+    top: 0;
+    background-color: #151515;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 40px;
 }
+
+
 
 #navbar{
     display: flex;
@@ -30,7 +38,7 @@ body { background-color: #151515;
 }
 
 .logo{
-    width: 100%;
+    width: auto;
     height: 70px;
 }
 .carticon{
@@ -38,18 +46,63 @@ body { background-color: #151515;
     height: 30px;
 }
 
-.container {
+.movies-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.container, .movie-info {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
 
 .card-image{
-    width: 100%;
+    width: inherit;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;  
+}
+
+
+.card-title{
+    font-weight: bold;
+}
+
+.card-button{
+    font-weight: bold;
+    color: red;
+    width: 100px;
+    height: 30px;
+
+}
+.hero{
+    background-image: url(https://static.noroff.dev/api/square-eyes/6-batman.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+    background-position: 90% 10%; 
+    height: 500px;
+
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
     
+}
+.hero-img{
+    height: 200px;
+}
+.hero-text{
+    max-width: 30%;
+    
+}
+
+.go-to-button{
+    /* ikke begynt på enda*/
 }

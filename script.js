@@ -1,5 +1,6 @@
 const container = document.querySelector("#productContainer")
 
+
 async function fetchAndCreateProducts() {
     try{
         const response = await fetch ("https://v2.api.noroff.dev/square-eyes")
@@ -13,7 +14,8 @@ async function fetchAndCreateProducts() {
             const title = document.createElement("h2")
             const price = document.createElement("p")
             const genre = document.createElement("h3")
-            const description = document.createElement("p")
+            
+            
 
             card.className = 'card'
             image.className = 'card-image'
@@ -21,19 +23,21 @@ async function fetchAndCreateProducts() {
             title.className = 'card-title'
             price.className = 'card-price'
             genre.className = 'card-genre'
-            description.className = 'card-description'
+            
+           
 
-            image.scr = product.image.url
+            image.src = product.image.url
             image.alt = product.image.alt
             title.textContent = product.title
             price.textContent = product.price
             genre.textContent = product.genre
-            description.textContent = product.description
+            
+            
 
             content.appendChild(title)
             content.appendChild(genre)
-            content.appendChild(description)
             content.appendChild(price)
+            card.appendChild(genre)
             card.appendChild(image)
             card.appendChild(content)
 
@@ -47,7 +51,4 @@ async function fetchAndCreateProducts() {
     }
     
 }
-
-
-
 fetchAndCreateProducts()
