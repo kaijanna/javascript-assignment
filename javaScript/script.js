@@ -16,8 +16,6 @@ async function getMovieByIdAndCreate() {
 
        displayMovie(product)
 
-       const addToCartBtnEl = document.querySelector('.add-to-cart-btn')
-        console.log(addToCartBtnEl)
 
         
 
@@ -27,24 +25,25 @@ async function getMovieByIdAndCreate() {
     
 }
 
+
 function displayMovie(product){
+
+   
     movieContainer.innerHTML=`
     
-    <div class="singel-movie-info">
-            <img src="${product.image.url}" class="movie-singel-img" alt="${product.image.alt} ">
-            <h1 class="movieTitel">${product.title}</h1>
+     <div class="singel-movie-info">
+             <img src="${product.image.url}" class="movie-singel-img" alt="${product.image.alt} ">
+             <h1 class="movieTitel">${product.title}</h1>
             <p class="movieP">${product.description}</p>
-            <h3 class="moviePrice">$${product.price}</h3>
-            <div class="button-container">
-                <button class="add-to-cart-btn" > Add to cart</button>
-                <button class="go-back"><a href="index.html">back to movies</a></button>
-             </div>   
-            
-            
-        </div>
-    
-    
-    `
+             <h3 class="moviePrice">$${product.price}</h3>
+             <div class="button-container">
+                
+                 <button class="go-back"><a href="index.html">back to movies</a></button>
+              </div>      
+         </div>
+     `
 }
 
 getMovieByIdAndCreate()
+
+//<button class="add-to-cart-btn" > Add to cart</button>

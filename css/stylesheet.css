@@ -164,17 +164,38 @@ a {
 
 
 .cart-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 10%;
+}
+.cart-card, .cart-total-container{
     display: flex;
     flex-direction: row;
-    max-width: 1200px;
-    max-height: 200px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
+    max-width: 1000px;
     margin: auto;
-    background-color: #2e2e2e;
+    padding: 20px 20px;
+    background-color: rgb(53, 52, 53);
+    width: 100%;
     border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
 }
+.cart-total-container{
+    background-color: rgb(68, 68, 68);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 20px;
+    
+}
+
 
 .cart-img{
     max-width: 100px;
