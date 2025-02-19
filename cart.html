@@ -15,16 +15,28 @@
             <li><a href="movies.html">Movies</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
-            <li><a href="cart.html"><img src="img/cart.png" class="carticon" alt="a shopping cart"></a></li>
+            <li><a href="cart.html" class="cart-link"><img src="img/cart.png" class="carticon" alt="a shopping cart"></a></li>
+            <li><span id="cartCount">0</span></li>
         </ul>
     </div>
 
 
   </section>
+   
+  <div class="cart-header">
+    <h1>Your cart items:</h1>
+  </div>
+
+  <div id="itemsInCart" class="cart-container">
+      <img src="img/addamsfamily.jpeg" class="cart-img">
+        <h2 class="cart-title">title of movie</h2>
+        <p class="cart-price">$price</p>
+      <button class="button" id="removeItem"> remove item</button>
+  </div>
     
 
 
 
-  <script src="index.js"></script>
+  <script src="javaScript/cart.js"></script>
 </body>
 </html>
