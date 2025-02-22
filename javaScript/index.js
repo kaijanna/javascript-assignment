@@ -22,7 +22,7 @@ async function getMovies() {
        // console.log(data)
        {
 
-        const changedMovieGenre = this.value
+       // const changedMovieGenre = this.value
     
         if (changedMovieGenre === "all"){
             createMovieList(products)
@@ -40,7 +40,9 @@ getMovies()
 // prøvde noe her ved å ha en option i html, med de verdiene på filmene fra før, som den kan forandre verdien av når man trykker på den, men 
 // nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
 //men fra 25 har jeg begynt tanken, og her på 43
-movieFilter.addEventListener("change", createMovieList(changedMovieGenre))
+movieFilter.addEventListener("change", createMovieList(filteredMovies){
+    const changedMovieGenre = this.value
+})
 
 //cart functions    
 function addMovieToCart(product){
