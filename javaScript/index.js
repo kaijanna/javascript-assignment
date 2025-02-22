@@ -1,6 +1,7 @@
 const API_URL = 'https://v2.api.noroff.dev/square-eyes'
 const container = document.querySelector("#movieContainer")
-const movieFilter = document.querySelector("#filter") 
+//const movieFilter = document.querySelector("#filter") 
+const movieFilter = document.querySelector("#movieByGenre") 
 
 
 async function doFetch(url) {
@@ -19,25 +20,29 @@ async function getMovies() {
      const data = await doFetch (API_URL)
      const products = data.data
        // console.log(data)
+       {
 
-
-
+        const changedMovieGenre = this.value
     
-
+        if (changedMovieGenre === "all"){
+            createMovieList(products)
+        } else {
+            const filteredMovies = products.filter(product => product.genre === changedMovieGenre)
+            createMovieList(filteredMovies)
+        }
+    }
+    
         createMovieList(products)    
         
 }
 getMovies()
 
+// prøvde noe her ved å ha en option i html, med de verdiene på filmene fra før, som den kan forandre verdien av når man trykker på den, men 
+// nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
+//men fra 25 har jeg begynt tanken, og her på 43
+movieFilter.addEventListener("change", createMovieList(changedMovieGenre))
 
-function sortByGenre(products){
-    
-
-}
-    
-       
-
-
+//cart functions    
 function addMovieToCart(product){
     const cart = JSON.parse(localStorage.getItem('cart'))
     console.log('add to cart was clicked')
@@ -116,7 +121,4 @@ function createMovieList(products){
 
     })   
 }
-
-
-
 
