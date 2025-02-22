@@ -14,18 +14,20 @@ async function doFetch(url) {
         console.error('Error fetching products:',err)
     }  
 }
-
+// prøvde noe her ved å ha en option i html, med de verdiene på filmene altså genre , som den kan forandre verdien av når man trykker på den, men 
+// nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
+// linje 20 og 21, og inni getMovies fra linje 32 til 37
 movieFilter.addEventListener("change", createMovieList(filteredMovies))
     const changedMovieGenre = this.value
-    
+
 async function getMovies() {
     // legge til loading her
      const data = await doFetch (API_URL)
      const products = data.data
        // console.log(data)
-       {
+       
 
-       // const changedMovieGenre = this.value
+       
     
         if (changedMovieGenre === "all"){
             createMovieList(products)
@@ -33,16 +35,14 @@ async function getMovies() {
             const filteredMovies = products.filter(product => product.genre === changedMovieGenre)
             createMovieList(filteredMovies)
         }
-    }
+    
     
         createMovieList(products)    
         
 }
 getMovies()
 
-// prøvde noe her ved å ha en option i html, med de verdiene på filmene fra før, som den kan forandre verdien av når man trykker på den, men 
-// nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
-//men fra 25 har jeg begynt tanken, og her på 43
+
 
 
 
