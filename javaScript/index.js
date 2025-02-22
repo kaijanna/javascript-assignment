@@ -16,9 +16,7 @@ async function doFetch(url) {
 }
 // prøvde noe her ved å ha en option i html, med de verdiene på filmene altså genre , som den kan forandre verdien av når man trykker på den, men 
 // nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
-// linje 20 og 21, og inni getMovies fra linje 32 til 37
-movieFilter.addEventListener("change", createMovieList(filteredMovies))
-    const changedMovieGenre = this.value
+
 
 async function getMovies() {
     // legge til loading her
@@ -29,20 +27,28 @@ async function getMovies() {
 
        
     
-        if (changedMovieGenre === "all"){
-            createMovieList(products)
-        } else {
-            const filteredMovies = products.filter(product => product.genre === changedMovieGenre)
-            createMovieList(filteredMovies)
-        }
-    
+
     
         createMovieList(products)    
         
 }
 getMovies()
 
+movieFilter.addEventListener("change", function(){
+    const testValgAvGenre = this.value
 
+    fetch(API_URL)
+    .then(response => response.json())
+    .then(products => {
+        if (testValgAvGenre === "all") {
+            createMovieList(products)
+        } else {
+            const movieFilterd = products.filter(product => product.genre === testValgAvGenre)
+            createMovieList(movieFilterd)
+        }
+    })
+
+})
 
 
 
