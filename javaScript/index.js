@@ -1,6 +1,6 @@
 const API_URL = 'https://v2.api.noroff.dev/square-eyes'
 const container = document.querySelector("#movieContainer")
-
+const movieFilter = document.querySelector("#filter") 
 
 
 async function doFetch(url) {
@@ -21,9 +21,22 @@ async function getMovies() {
        // console.log(data)
 
 
+
+    
+
         createMovieList(products)    
+        
 }
 getMovies()
+
+
+function sortByGenre(products){
+    
+
+}
+    
+       
+
 
 function addMovieToCart(product){
     const cart = JSON.parse(localStorage.getItem('cart'))
