@@ -7,7 +7,7 @@ const id = movieId.get(`id`)
 
 
 async function getMovieByIdAndCreate() {
-
+// start loader
     try {
         const response = await fetch (`https://v2.api.noroff.dev/square-eyes/${id}`)
         const data = await response.json()
@@ -20,6 +20,8 @@ async function getMovieByIdAndCreate() {
         
 
     }catch (err) {
+        // fjern loader og erstatte med feilmelding til sluttbruker
+        movieContainer.innerHTML = "Åneiiii noe gikk feil esj"
         console.error('Error fetching products:',err)
     }
     
@@ -28,7 +30,7 @@ async function getMovieByIdAndCreate() {
 
 function displayMovie(product){
 
-   
+   // stop loader
     movieContainer.innerHTML=`
     
      <div class="singel-movie-info">

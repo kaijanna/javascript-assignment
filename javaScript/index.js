@@ -1,6 +1,6 @@
-console.log("sjekke at den er linket til siden")
 const API_URL = 'https://v2.api.noroff.dev/square-eyes'
-const container = document.querySelector("#movie")
+const container = document.querySelector("#movieContainer")
+
 
 
 async function doFetch(url) {
@@ -15,9 +15,11 @@ async function doFetch(url) {
 }
 
 async function getMovies() {
+    // legge til loading her
      const data = await doFetch (API_URL)
      const products = data.data
        // console.log(data)
+
 
         createMovieList(products)    
 }
@@ -38,17 +40,17 @@ function addMovieToCart(product){
         updateCartCountTotal(cart.length);
     }
 }
-// jeg vil ha det sånn at jeg bare har en av hver film, om man legger den til i cart, så en typ feil melding med du har denne alt i cart:) skal det i addmovietocart function?
-// når siden refresher seg så vil jeg ha de items fra local storage, og gjøre det så det blir riktig antall i cart
 
 function updateCartCountTotal(counter){
     const cartCount = document.getElementById('cartCount')
+    console.log(counter)
     cartCount.textContent = counter;
-
 }
+
 
 function createMovieList(products){
 
+    // fjerne loading når du kommer her
     products.forEach(product =>{
 
         const card = document.createElement("div")
@@ -60,7 +62,7 @@ function createMovieList(products){
 
         card.className = 'card'
         image.className = 'card-image'
-        content.className = 'card-contet'
+        content.className = 'card-content'
         title.className = 'card-title'
         price.className = 'card-price'
         
@@ -96,13 +98,12 @@ function createMovieList(products){
         content.appendChild(goToLink)
         goToLink.appendChild(goToMovie)
         
-        movie.appendChild(card)
+        movieContainer.appendChild(card)
 
 
-    })
-
-    
+    })   
 }
+
 
 
 
