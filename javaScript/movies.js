@@ -111,12 +111,12 @@ function createMovieList(movies){
 function filterMoviesGenre(){
     let filteredMovies = movies
     
-    const selectGenre = (movieFilter.value.movies)
+    const selectGenre = movieFilter.value.toLowerCase()
     
     createMovieList(filteredMovies)
     if (selectGenre !== "all"){
         filteredMovies = filteredMovies.filter(product => {
-            const foundGenre = (product.genre() === selectGenre);
+            const foundGenre = product.genre.toLowerCase() === selectGenre;
             return foundGenre
         }) 
     }
