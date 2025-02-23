@@ -1,18 +1,19 @@
 const movieContainer = document.querySelector("#movieDetails")
 
 const movieId = new URLSearchParams(window.location.search)
+const loadingIndicator = document.getElementById("loading");
 
 const id = movieId.get(`id`)
 
 
 
 async function getMovieByIdAndCreate() {
-// start loader
+    loadingIndicator.innerHTML = "<p>Loading movies...</p>";
     try {
         const response = await fetch (`https://v2.api.noroff.dev/square-eyes/${id}`)
         const data = await response.json()
         const product = data.data
-        console.log(product)
+        
 
        displayMovie(product)
 
@@ -20,8 +21,8 @@ async function getMovieByIdAndCreate() {
         
 
     }catch (err) {
-        // fjern loader og erstatte med feilmelding til sluttbruker
-        movieContainer.innerHTML = "Åneiiii noe gikk feil esj"
+        loadingIndicator.innerHTML = ""
+        movieContainer.innerHTML = "oh no, something went wrong.."
         console.error('Error fetching products:',err)
     }
     
@@ -30,7 +31,7 @@ async function getMovieByIdAndCreate() {
 
 function displayMovie(product){
 
-   // stop loader
+   loadingIndicator.innerHTML = ""
     movieContainer.innerHTML=`
     
      <div class="singel-movie-info">

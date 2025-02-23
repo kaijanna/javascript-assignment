@@ -1,7 +1,9 @@
 const API_URL = 'https://v2.api.noroff.dev/square-eyes'
 const container = document.querySelector("#movieContainer")
-//const movieFilter = document.querySelector("#filter") 
-const movieFilter = document.querySelector("#movieByGenre") 
+const loadingIndicator = document.getElementById("loading");
+
+
+
 
 
 async function doFetch(url) {
@@ -14,41 +16,22 @@ async function doFetch(url) {
         console.error('Error fetching products:',err)
     }  
 }
-// prøvde noe her ved å ha en option i html, med de verdiene på filmene altså genre , som den kan forandre verdien av når man trykker på den, men 
-// nå ble jo alt borte, så har jo tenkt noe feil hehe, men har prøvd noe og ikke slette igjen da, håper tanken var en smule i riktig retning kanskje, sikker ikke helt hehe
 
 
 async function getMovies() {
-    // legge til loading her
+    loadingIndicator.innerHTML = "<p>Loading products...</p>";
      const data = await doFetch (API_URL)
-     const products = data.data
-       // console.log(data)
-       
-
-       
+     const movies = data.data
     
-
     
-        createMovieList(products)    
+    
+        createMovieList(movies)    
         
 }
 getMovies()
 
-movieFilter.addEventListener("change", function(){
-    const testValgAvGenre = this.value
 
-    fetch(API_URL)
-    .then(response => response.json())
-    .then(products => {
-        if (testValgAvGenre === "all") {
-            createMovieList(products)
-        } else {
-            const movieFilterd = products.filter(product => product.genre === testValgAvGenre)
-            createMovieList(movieFilterd)
-        }
-    })
 
-})
 
 
 
@@ -76,10 +59,10 @@ function updateCartCountTotal(counter){
 }
 
 
-function createMovieList(products){
-
-    // fjerne loading når du kommer her
-    products.forEach(product =>{
+function createMovieList(movies){
+    loadingIndicator.innerHTML = ""; 
+   
+    movies.forEach(product =>{
 
         const card = document.createElement("div")
         const image = document.createElement("img")
@@ -131,4 +114,3 @@ function createMovieList(products){
 
     })   
 }
-

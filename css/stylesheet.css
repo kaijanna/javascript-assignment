@@ -202,6 +202,15 @@ a {
     
 }
 
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 20px;
+}
+
 
 .cart-img{
     max-width: 100px;

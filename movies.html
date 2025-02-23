@@ -1,52 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies</title>
-    <link rel="stylesheet" href="css/stylesheet.css" />
-  </head>
-  <body>
-    <section id="header">
-      <a href="index.html"
-        ><img src="img/logo.png" class="logo" alt="logo glasses with the text "
-      /></a>
-
-
-      <div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tried to filter by genre page</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script type="module" src="javaScript/movies.js"></script>
+    <script type="module" src="javaScript/generalFunctions.js"></script>
+</head>
+<body>
+   
+  <section id="header" class="header">
+    <a href="index.html"><img src="img/logo.png" class="logo" alt="logo glasses with the text "></a>
+ 
+    <div>
         <ul id="navbar">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="movies.html">Movies</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="contact.html">Contact us</a></li>
-          <li>
-            <a href="cart.html" class="cart-link"
-              ><img src="img/cart.png" class="carticon" alt="a shopping cart"
-            /></a>
-          </li>
-          <li><span id="cartCount">0</span></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Movies</a></li> 
+            <li><a href="cart.html" class="cart-link"><img src="img/cart.png" class="carticon" alt="a shopping cart"></a></li>
+            <li><span id="cartCount">0</span></li>
         </ul>
-      </div>
-    </section>
-    <section class="movies-header">
-      <h1>Movies</h1>
-      <div id="filterWrapper"></div>
-      <div id="sortWrapper">
-        <label for="select-sorting">Sorter etter:</label>
+    </div>
 
 
-        <select name="sort" id="select-sorting">
-            <option value="title">Title</option>
-            <option value="genre">Genre</option>
-            <option value="price">Price</option>
-          </select>
-      </div>
-    </section>
+  </section>
+  
+  <main>
+   
 
 
-    <ul id="movieList" class="movie-info"></ul>
+   <section class="movies-header">
+    <h1>Movies</h1>
+    <h4>The sort by movie filter is under construction</h4>
+
+     <select id="filter">
+      <option value="all">All</option>
+      <option value="action">Action</option>
+      <option value="horror">Horror</option>
+      <option value="kids">Kids</option>
+      <option value="comedy">Comedy</option>
+      <option value="drama">Drama</option>
+    </select>
+   </section> 
+
+   
+  <div id="loading" class="movies-header"></div>
+  
+
+  <div id="movieContainer" class="movie-info"> </div>
+
+   
+
+  </main>  
 
 
-    <script src="javaScript/movies.js"></script>
-  </body>
+  <footer class="footer">
+    <div>
+      javaScrip assignment by Anna Kaijankoski
+    </div>
+  </footer>
+ 
+</body>
+
+
 </html>

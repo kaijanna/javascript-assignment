@@ -1,6 +1,9 @@
 import { initialCartLoade } from "./generalFunctions.js";
 const totalPriceEl = document.querySelector("#totalPrice")
 const itemsInCart = document.querySelector("#itemsInCart")
+const checkOutBtnEl = document.querySelector("#checkOutBtn")
+
+checkOutBtn
 
 function populateCart(cart){
   itemsInCart.innerHTML = ""
@@ -20,7 +23,7 @@ function populateCart(cart){
     }
   })
   totalPriceEl.innerHTML = "$" + totalPrice 
-
+  
 
   cartWithMultipleItems.forEach(product => {
         const card = document.createElement("div")
@@ -73,7 +76,6 @@ function removeItemFromCart(productId){
   if (!cart) return;
   if (!cart?.length) return
 
-    // alle filmer untatt den vi vil fjerne
   const newCartArray = cart.filter(product => {
     return product.id !== productId
   })
@@ -84,3 +86,4 @@ function removeItemFromCart(productId){
 
 }
 
+  

@@ -1,16 +1,39 @@
-const filterContainer = document.getElementById("filterWrapper");
-const sortSelect = document.getElementById("select-sorting");
-const movieContainer = document.querySelector("#movieList");
+const API_URL = 'https://v2.api.noroff.dev/square-eyes'
+const container = document.querySelector("#movieContainer")
+const loadingIndicator = document.getElementById("loading");
+const movieFilter = document.querySelector("#filter") 
+
+let movies = []
 
 
+async function doFetch(url) {
+    try{
+        const response = await fetch (url)
+        const data = await response.json()
+        return data;
+       
+    }catch (err) {
+        console.error('Error fetching products:',err)
+    }  
+}
 
-const filterStorage = () => localStorage.getItem("movie-filter");
-const sortStorage = () => localStorage.getItem("movie-sort");
 
+async function getMovies() {
+    loadingIndicator.innerHTML = "<p>Loading movies...</p>";
+     const data = await doFetch (API_URL)
+     const movies = data.data
+    
+    
+     
+        createMovieList(movies)    
+        
+}
+getMovies()
+
+
+//cart functions    
 function addMovieToCart(product){
     const cart = JSON.parse(localStorage.getItem('cart'))
-    console.log('add to cart was clicked')
-    console.log(cart)
     
 
     if (cart === null){
@@ -25,159 +48,85 @@ function addMovieToCart(product){
 
 function updateCartCountTotal(counter){
     const cartCount = document.getElementById('cartCount')
-    console.log(counter)
+   
     cartCount.textContent = counter;
 }
 
 
-function createMovieCard(product) {
-  const card = document.createElement("li");
-  const image = document.createElement("img");
-  const content = document.createElement("div");
-  const title = document.createElement("h2");
-  const price = document.createElement("p");
-  const genre = document.createElement("h3");
+function createMovieList(movies){
+    loadingIndicator.innerHTML = ""
+    movieContainer.innerHTML = ""
+    movies.forEach(product =>{
+
+        const card = document.createElement("div")
+        const image = document.createElement("img")
+        const content = document.createElement("div")
+        const title = document.createElement("h2")
+        const price = document.createElement("p")
+        const genre = document.createElement("h3")
+
+        card.className = 'card'
+        image.className = 'card-image'
+        content.className = 'card-content'
+        title.className = 'card-title'
+        price.className = 'card-price'
+        
 
 
-  //buttons
-  const goToLink = document.createElement("a");
-  const goToMovie = document.createElement("button");
-  const addToCartBtn = document.createElement("button");
+        //buttons
+        const goToLink = document.createElement("a")
+        const goToMovie = document.createElement("button")
+        const addToCartBtn = document.createElement("button")
+
+        goToMovie.className = 'button'
+        addToCartBtn.className = 'button'
+
+        goToLink.href = `movie-info.html?id=${product.id}`
+        goToMovie.textContent = "Go to movie"
+        addToCartBtn.textContent = "Add to cart"
+       
+        addToCartBtn.addEventListener('click',() => addMovieToCart(product))
+
+        image.src = product.image.url
+        image.alt = product.image.alt
+        title.textContent = product.title
+        price.textContent = "$" + product.price
+        genre.textContent = product.genre
+       
+        content.appendChild(title)
+        content.appendChild(price)
+        card.appendChild(genre)
+        card.appendChild(image)
+        card.appendChild(content)
+        content.appendChild(addToCartBtn)
+        content.appendChild(goToLink)
+        goToLink.appendChild(goToMovie)
+        
+        movieContainer.appendChild(card)
 
 
-  card.className = "card";
-  image.className = "card-image";
-  content.className = "card-contet";
-  title.className = "card-title";
-  price.className = "card-price";
-
-
-  //buttons
-  goToMovie.className = "button";
-  addToCartBtn.className = "button";
-
-
-  image.src = product.image.url;
-  image.alt = product.image.alt;
-  title.textContent = product.title;
-  price.textContent = "$" + product.price;
-  genre.textContent = product.genre;
-  //buttons
-  goToLink.href = `movie-info.html?id=${product.id}`;
-  goToMovie.textContent = "Go to movie";
-  addToCartBtn.textContent = "Add to cart";
-  addToCartBtn.addEventListener('click',() => addMovieToCart(product))
-
-
-  content.appendChild(title);
-  content.appendChild(price);
-  card.appendChild(genre);
-  card.appendChild(image);
-  card.appendChild(content);
-  content.appendChild(addToCartBtn);
-
-
-  content.appendChild(goToLink);
-  goToLink.appendChild(goToMovie);
-
-
-  movieContainer.appendChild(card);
+    })   
 }
 
-
-
-function sortAndFilterMovies(movies, genre, sort) {
-  movieContainer.innerHTML = "";
-
-
-  const filteredMovies =
-    genre === "Alle"
-      ? movies
-      : movies.filter((movie) => {
-          return genre ? movie.genre === genre : true;
-        });
-
-
-  const useSort = sort || sortStorage();
-
-
-  filteredMovies.sort((a, b) => {
-    nameA = a[useSort || "title"];
-    nameB = b[useSort || "title"];
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
-  filteredMovies.forEach((movie) => {
-    createMovieCard(movie);
-  });
-}
-
-
-
-function createGenreSelectElement(selectArray, movies) {
-  const selectList = document.createElement("select");
-  selectList.onchange = (e) => {
-    sortAndFilterMovies(movies, e.target.value);
-    localStorage.setItem("movie-filter", e.target.value);
-  };
-  selectList.id = "filter-genre";
-
-
-  const selectLabel = document.createElement("label");
-  selectLabel.textContent = "Vis sjanger";
-  selectLabel.htmlFor = "filter-genre";
-
-
-  filterContainer.appendChild(selectLabel);
-  filterContainer.appendChild(selectList);
-
-
-  selectArray.forEach((obj) => {
-    const option = document.createElement("option");
-    option.value = obj;
-    option.text = obj;
-    selectList.appendChild(option);
-  });
-  selectList.value = filterStorage();
-}
-
-
-
-async function getMovies() {
-  try {
-    const response = await fetch("https://v2.api.noroff.dev/square-eyes");
-    const data = await response.json();
-    const movies = data.data;
-
-
+function filterMoviesGenre(){
+    let filteredMovies = movies
     
-    const uniqueGenreArray = [...new Set(movies.map((movie) => movie.genre))];
-
-
-    createGenreSelectElement(["Alle", ...uniqueGenreArray], movies);
-
-
-    sortSelect.value = sortStorage() || "title";
-    sortAndFilterMovies(movies, filterStorage());
-
-
+    const selectGenre = (movieFilter.value.movies)
     
-    sortSelect.addEventListener("change", (e) => {
-      localStorage.setItem("movie-sort", e.target.value);
-      sortAndFilterMovies(movies, filterStorage(), e.target.value);
-    });
-  } catch (err) {
-    console.error("Error fetching products:", err);
-    return [];
-  }
+    createMovieList(filteredMovies)
+    if (selectGenre !== "all"){
+        filteredMovies = filteredMovies.filter(product => {
+            const foundGenre = (product.genre() === selectGenre);
+            return foundGenre
+        }) 
+    }
+    createMovieList(foundGenre)
 }
 
+movieFilter.addEventListener("change", filterMoviesGenre)
 
-getMovies();
 
 
+// have tried so many things to figure out the sort by genre, but I have not been able to work out how to do it after i have been able to show the 
+// list of movies from the api. with trying, the list of movies is affected when I try to get the functions to work together, and i just
+// have to leave it here now so that you can see that i have been trying and i have been struggling to add the knowledge from the theoretical examples in the modules.
