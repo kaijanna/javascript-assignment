@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javascript assignment by anna for noroff</title>
+    <title>tried to filter by genre page</title>
     <link rel="stylesheet" href="css/stylesheet.css">
-    <script type="module" src="javaScript/index.js"></script>
+    <script type="module" src="javaScript/movies.js"></script>
     <script type="module" src="javaScript/generalFunctions.js"></script>
 </head>
 <body>
@@ -16,12 +16,10 @@
     <div>
         <ul id="navbar">
             <li><a href="index.html">Home</a></li>
-            <li><a href="movies.html">Movies</a></li>
-            <li><a href="cart.html" class="cart-link"><img src="img/cart.png" class="carticon" alt="a shopping cart"></a></li>
+            <li><a href="html/cart.html" class="cart-link"><img src="img/cart.png" class="carticon" alt="a shopping cart"></a></li>
             <li><span id="cartCount">0</span></li>
         </ul>
     </div>
-
 
   </section>
   
@@ -31,8 +29,16 @@
 
    <section class="movies-header">
     <h1>Movies</h1>
+    <h4>The sort by movie genre</h4>
 
-    
+     <select id="filter">
+      <option value="All">All</option>
+      <option value="Action">Action</option>
+      <option value="Horror">Horror</option>
+      <option value="Kids">Kids</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Drama">Drama</option>
+    </select>
    </section> 
 
    
@@ -46,11 +52,11 @@
   </main>  
 
 
-<footer class="footer">
-  <div>
-    javaScrip assignment by Anna Kaijankoski
-  </div>
-</footer>
+  <footer class="footer">
+    <div>
+      javaScrip assignment by Anna Kaijankoski
+    </div>
+  </footer>
  
 </body>
 

@@ -41,7 +41,7 @@ function displayMovie(product){
              <h3 class="moviePrice">$${product.price}</h3>
              <div class="button-container">
                 
-                 <button class="go-back"><a href="index.html">back to movies</a></button>
+                 <button class="go-back"><a href="../index.html">back to movies</a></button>
               </div>      
          </div>
      `

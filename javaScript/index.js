@@ -38,8 +38,7 @@ getMovies()
 //cart functions    
 function addMovieToCart(product){
     const cart = JSON.parse(localStorage.getItem('cart'))
-    console.log('add to cart was clicked')
-    console.log(cart)
+    
     
 
     if (cart === null){
@@ -54,7 +53,7 @@ function addMovieToCart(product){
 
 function updateCartCountTotal(counter){
     const cartCount = document.getElementById('cartCount')
-    console.log(counter)
+    
     cartCount.textContent = counter;
 }
 

@@ -21,14 +21,26 @@ async function doFetch(url) {
 async function getMovies() {
     loadingIndicator.innerHTML = "<p>Loading movies...</p>";
      const data = await doFetch (API_URL)
-     const movies = data.data
+     movies = data.data
+   
     
-    
-     
-        createMovieList(movies)    
+        createMovieList(movies)  
+        
+        
         
 }
 getMovies()
+
+movieFilter.addEventListener("change", function(){
+    const selectGenre = this.value
+
+    if (selectGenre === "All"){
+        createMovieList(movies)
+    } else {
+        const filtered = movies.filter(product => product.genre === selectGenre)
+        createMovieList(filtered)
+    }
+})
 
 
 //cart functions    
@@ -81,7 +93,7 @@ function createMovieList(movies){
         goToMovie.className = 'button'
         addToCartBtn.className = 'button'
 
-        goToLink.href = `movie-info.html?id=${product.id}`
+        goToLink.href = `html/movie-info.html?id=${product.id}`
         goToMovie.textContent = "Go to movie"
         addToCartBtn.textContent = "Add to cart"
        
@@ -105,28 +117,25 @@ function createMovieList(movies){
         movieContainer.appendChild(card)
 
 
+
+       
     })   
+
 }
 
-function filterMoviesGenre(){
-    let filteredMovies = movies
+
+
+   
     
-    const selectGenre = movieFilter.value.toLowerCase()
+
+
     
-    createMovieList(filteredMovies)
-    if (selectGenre !== "all"){
-        filteredMovies = filteredMovies.filter(product => {
-            const foundGenre = product.genre.toLowerCase() === selectGenre;
-            return foundGenre
-        }) 
-    }
-    createMovieList(foundGenre)
-}
 
-movieFilter.addEventListener("change", filterMoviesGenre)
+  
 
 
 
-// have tried so many things to figure out the sort by genre, but I have not been able to work out how to do it after i have been able to show the 
-// list of movies from the api. with trying, the list of movies is affected when I try to get the functions to work together, and i just
-// have to leave it here now so that you can see that i have been trying and i have been struggling to add the knowledge from the theoretical examples in the modules.
+
+
+
+
